@@ -3,8 +3,14 @@
 import ImgError from "../assets/img/img_error.svg";
 import * as S from "./ErrorPage.style";
 
+import { useRouter } from "next/navigation";
+
 function NotFound() {
-  const handleClickHomeButton = () => {};
+  const router = useRouter();
+
+  const handleClickHomeButton = () => {
+    router.push(`/?step=${1}`);
+  };
 
   return (
     <S.ErrorPageWrapper>
