@@ -1,16 +1,18 @@
 "use client";
 
-import GlobalStyleProvider from "@/components/GlobalStyleProvider";
+import GlobalStyleProvider from "@/GlobalStyleProvider";
 import theme from "@/styles/theme";
 import { ThemeProvider } from "@emotion/react";
 import { Inter } from "next/font/google";
 import Head from "next/head";
+import { useState } from "react";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 const inter = Inter({ subsets: ["latin"] });
 
 const metadata = {
-    title: "레큐 lecue",
-   description: "레큐노트에 우리의 마음을 담아 전달해요",
+  title: "레큐 lecue",
+  description: "레큐노트에 우리의 마음을 담아 전달해요",
 };
 
 export default function RootLayout({
@@ -18,6 +20,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            suspense: true,
+            useErrorBoundary: true,
+            retry: 0,
+          },
+        },
+      })
+  );
+
   return (
     <html lang="ko">
       <Head>
@@ -25,9 +40,11 @@ export default function RootLayout({
         <meta name="description" content={metadata.description} />
       </Head>
       <body className={inter.className}>
-        <ThemeProvider theme={theme}>
-          <GlobalStyleProvider>{children}</GlobalStyleProvider>
-        </ThemeProvider>
+        <QueryClientProvider client={queryClient}>
+          <ThemeProvider theme={theme}>
+            <GlobalStyleProvider>{children}</GlobalStyleProvider>
+          </ThemeProvider>
+        </QueryClientProvider>
       </body>
     </html>
   );
