@@ -1,7 +1,7 @@
+import Lottie from "lottie-react";
+
 import animationData from "../../assets/lottie/spiner 120.json";
 import * as S from "./LoadingPage.style";
-
-import Lottie from "lottie-react";
 
 function LoadingPage() {
   return (
