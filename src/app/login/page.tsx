@@ -1,5 +1,7 @@
+import Login from "@/views/Login/page";
+
 function page() {
-  return <div>page</div>;
+  return <Login />;
 }
 
 export default page;

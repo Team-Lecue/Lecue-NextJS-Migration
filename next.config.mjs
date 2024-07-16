@@ -10,10 +10,10 @@ const nextConfig = {
   },
   env: {
     APP_BASE_URL: process.env.APP_BASE_URL,
-    VITE_APP_TOKEN: process.env.VITE_APP_TOKEN,
-    VITE_KAKAO_API_KEY: process.env.VITE_KAKAO_API_KEY,
-    VITE_KAKAO_BASE_URL: process.env.VITE_KAKAO_BASE_URL,
-    VITE_KAKAO_REDIRECT_URI: process.env.VITE_KAKAO_REDIRECT_URI,
+    APP_TOKEN: process.env.APP_TOKEN,
+    KAKAO_API_KEY: process.env.KAKAO_API_KEY,
+    KAKAO_BASE_URL: process.env.KAKAO_BASE_URL,
+    KAKAO_REDIRECT_URI: process.env.KAKAO_REDIRECT_URI,
   },
 };
 
