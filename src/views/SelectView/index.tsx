@@ -1,9 +1,12 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import Home from "../Home/page";
-import SplashPage from "../Splash/page/SplashPage";
+const Home = dynamic(() => import("../Home/page"), { ssr: false });
+const SplashPage = dynamic(() => import("../Splash/page/SplashPage"), {
+  ssr: false,
+});
 
 function SelectView() {
   const searchParams = useSearchParams();
@@ -25,7 +28,7 @@ function SelectView() {
     setStep(newStep);
   };
 
-  return !isLogin ? (
+  return !isLogin && step === 0 ? (
     <SplashPage handleStep={handleStep} />
   ) : (
     <Home handleStep={handleStep} />
