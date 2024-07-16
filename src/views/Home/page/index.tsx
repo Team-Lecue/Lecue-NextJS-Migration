@@ -3,7 +3,9 @@
 import LoadingPage from "@/views/LoadingPage";
 import { useEffect, useState } from "react";
 import { StepProps } from "../../Splash/page/SplashPage";
+import FavoriteBookList from "../components/FavoriteBookList";
 import HomeMainBanner from "../components/HomeMainBanner";
+
 import LecueBookList from "../components/LecueBookList";
 import useGetLecueBook from "../hooks/useGetLecueBook";
 import * as S from "./Home.style";
@@ -29,8 +31,8 @@ function Home({ handleStep }: StepProps) {
     <S.Wrapper>
       <HomeMainBanner />
 
-      {isLogin && <LecueBookList title="즐겨찾기한 레큐북" />}
-      <LecueBookList title="인기 레큐북 구경하기" />
+      {isLogin && <FavoriteBookList />}
+      <LecueBookList />
     </S.Wrapper>
   );
 }
