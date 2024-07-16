@@ -7,6 +7,7 @@ const NoBookmarkList = () => {
   const router = useRouter();
 
   const handleClickNavigateBtn = () => {
+    // 추후 수정 필요
     router.push(`/?state=${2}`);
   };
 
