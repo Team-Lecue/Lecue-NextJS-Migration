@@ -1,7 +1,7 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { lazy, Suspense, useEffect, useRef, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
 
 import useScrollPosition from "../../../../utils/savedScrollPosition";
 
@@ -49,17 +49,28 @@ function LecueNoteListContainer(props: LecueNoteListContainerProps) {
   } = props;
 
   //hooks
-  const navigate = useNavigate();
-  const location = useLocation();
+  const router = useRouter();
+
   const scrollRef = useRef<HTMLDivElement>(null);
   const { savedScrollPosition } = useScrollPosition();
   const { stickerState, setStickerState, handleDrag } =
     useStickerState(savedScrollPosition);
 
   const [isLogin, setIsLogin] = useState<string | null>();
+  const [stickerId, setStickerId] = useState<number | null>();
+  const [stickerImage, setStickerImage] = useState<string | null>();
+
+  // 스토리지 쓸지 쿼리파라미터 쓸지 고민 중
   useEffect(() => {
     const storeIsLogin = sessionStorage.getItem("token");
     setIsLogin(storeIsLogin);
+    const storeStickerId = Number(sessionStorage.getItem("stickerId"));
+    setStickerId(storeStickerId);
+    const storeStickerImage = sessionStorage.getItem("stickerImage");
+    setStickerImage(storeStickerImage);
+
+    // useNavigate state -> 세션 스토리지로 변경
+    sessionStorage.setItem("bookId", bookId.toString());
   }, []);
 
   //state
@@ -81,9 +92,7 @@ function LecueNoteListContainer(props: LecueNoteListContainerProps) {
   }, [fullHeight, stickerState.positionY, scrollRef]);
 
   useEffect(() => {
-    if (location.state) {
-      const { stickerId, stickerImage } = location.state.sticker;
-
+    if (stickerId && stickerImage) {
       window.scrollTo(0, savedScrollPosition);
 
       setStickerState((prev) => ({
@@ -94,7 +103,7 @@ function LecueNoteListContainer(props: LecueNoteListContainerProps) {
     } else {
       setEditableStateFalse();
     }
-  }, [location.state, isEditable]);
+  }, [stickerId, stickerImage, isEditable]);
 
   const handleClickDone = usePostSticker({
     bookUuid,
@@ -107,7 +116,7 @@ function LecueNoteListContainer(props: LecueNoteListContainerProps) {
     if (isLogin) {
       sessionStorage.setItem("scrollPosition", window.scrollY.toString());
       const path = isSticker ? "/sticker-pack" : "/create-note";
-      navigate(path, { state: { bookId } });
+      router.push(path);
     } else {
       setModalOn(true);
     }
@@ -191,7 +200,7 @@ function LecueNoteListContainer(props: LecueNoteListContainerProps) {
         <CommonModal
           category="login"
           setModalOn={setModalOn}
-          handleFn={() => navigate(`/login`)}
+          handleFn={() => router.push(`/login`)}
         />
       )}
     </S.LecueNoteListContainerWrapper>

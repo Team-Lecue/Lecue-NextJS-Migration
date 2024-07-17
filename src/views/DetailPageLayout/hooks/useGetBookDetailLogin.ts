@@ -1,18 +1,18 @@
+import { useRouter } from "next/navigation";
 import { useQuery } from "react-query";
-import { useNavigate } from "react-router-dom";
 
 import { QUERY_KEY } from "../../../constants/queryKeys";
 import { getBookDetailLogin } from "../api/getBookDetailLogin";
 
 export default function useGetBookDetailLogin(bookUuid: string) {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const { data: bookDetail, isLoading } = useQuery(
     [QUERY_KEY.favorite.atLecueBookDetail, bookUuid],
     () => getBookDetailLogin(bookUuid),
     {
       onError: () => {
-        navigate("/error");
+        router.push("/error");
       },
       refetchOnMount: "always",
       refetchOnWindowFocus: false,

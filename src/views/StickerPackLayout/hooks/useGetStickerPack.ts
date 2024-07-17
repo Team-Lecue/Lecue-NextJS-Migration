@@ -1,20 +1,20 @@
-import { useQuery } from 'react-query';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from "next/navigation";
+import { useQuery } from "react-query";
 
-import { getStickerPack } from '../api/getStickerPack';
+import { getStickerPack } from "../api/getStickerPack";
 
 export default function useGetStickerPack(bookId: number) {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const { data: stickerPack, isLoading } = useQuery(
-    ['useGetStickerPack'],
+    ["useGetStickerPack"],
     () => getStickerPack(bookId),
     {
       onError: () => {
-        navigate('/error');
+        router.push("/error");
       },
       refetchOnWindowFocus: false,
-    },
+    }
   );
 
   return { stickerPack, isLoading };

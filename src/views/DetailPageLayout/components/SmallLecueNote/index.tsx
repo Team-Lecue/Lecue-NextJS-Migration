@@ -1,8 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import { NoteType } from '../../type/lecueBookType';
-import LecueNoteModal from '../LecueNoteModal';
-import * as S from './SmallLecueNote.style';
+import { NoteType } from "../../type/lecueBookType";
+
+import dynamic from "next/dynamic";
+import * as S from "./SmallLecueNote.style";
+
+const LecueNoteModal = dynamic(() => import("../LecueNoteModal"), {
+  ssr: false,
+});
 
 interface SmallLecueNoteProps {
   renderType: number;
@@ -50,7 +55,7 @@ function SmallLecueNote({
         noteTextColor={noteTextColor}
         onClick={handleClickSmallLecueNote}
       >
-        {noteBackground.substring(0, 1) === '#' ? (
+        {noteBackground.substring(0, 1) === "#" ? (
           <S.SmallLecueNoteBackground noteBackground={noteBackground} />
         ) : (
           <S.SmallLecueNoteBackgroundImage

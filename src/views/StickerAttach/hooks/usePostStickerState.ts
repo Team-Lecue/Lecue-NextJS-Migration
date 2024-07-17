@@ -1,11 +1,11 @@
-import { useMutation } from 'react-query';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from "next/navigation";
+import { useMutation } from "react-query";
 
-import { postStickerState } from '../api/postStickerState';
-import { postedStickerParams } from '../type/postStickerType';
+import { postStickerState } from "../api/postStickerState";
+import { postedStickerParams } from "../type/postStickerType";
 
 const usePostStickerState = (bookUuId: string) => {
-  const navigate = useNavigate();
+  const router = useRouter();
   const mutation = useMutation({
     mutationFn: ({
       postedStickerId,
@@ -21,10 +21,13 @@ const usePostStickerState = (bookUuId: string) => {
       });
     },
     onSuccess: () => {
-      navigate(`/lecue-book/${bookUuId}`, { replace: true });
+      // replace true 해주는 useRouter 옵션 알아봐야 함
+      // navigate(`/lecue-book/${bookUuId}`, { replace: true });
+
+      router.push(`/lecue-book/${bookUuId}`);
     },
 
-    onError: () => navigate('/error'),
+    onError: () => router.push("/error"),
   });
   return mutation;
 };

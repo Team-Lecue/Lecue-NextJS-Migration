@@ -1,5 +1,5 @@
+import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
 
 // component
 
@@ -11,15 +11,17 @@ import useGetStickerPack from "../../hooks/useGetStickerPack";
 import Button from "@/common/Button/index.jsx";
 import Header from "@/common/Header/index.jsx";
 import LoadingPage from "@/views/LoadingPage/index.jsx";
+import { useEffect } from "react";
 import StickerList from "../../components/StickerList/index.jsx";
 import { stickerType } from "../../type/stickerPackType.js";
-import * as S from "./StickerPack.style";
+import * as S from "./StickerPackLayout.style";
 
-function StickerPack() {
-  const navigate = useNavigate();
-  const location = useLocation();
+interface StickerPackLayoutProps {
+  bookId: number;
+}
 
-  const { bookId } = location.state || {};
+function StickerPackLayout({ bookId }: StickerPackLayoutProps) {
+  const router = useRouter();
 
   const [selectedStickerData, setSelectedStickerData] = useState<stickerType>({
     stickerId: 0,
@@ -34,16 +36,28 @@ function StickerPack() {
     }));
   };
 
+  useEffect(() => {
+    sessionStorage.setItem(
+      "stickerId",
+      selectedStickerData.stickerId.toString()
+    );
+    sessionStorage.setItem("stickerImage", selectedStickerData.stickerImage);
+  }, [selectedStickerData]);
+
   // Conditionally Hook Call 방지
   const bookUuidResult = useGetBookUuid(bookId);
   const stickerPackResult = useGetStickerPack(bookId);
 
   const isLoading = bookUuidResult.isLoading || stickerPackResult.isLoading;
 
+  // useLocation 대신 세션스토리지 이용하도록 로직 변경
+  // replace true 해주는 useRouter 옵션 알아봐야 함
   const handleClickDone = () => {
-    navigate(`/sticker-attach/${bookUuidResult.bookUuId}`, {
-      state: { sticker: selectedStickerData, replace: true },
-    });
+    // navigate(`/sticker-attach/${bookUuidResult.bookUuId}`, {
+    //   state: { sticker: selectedStickerData, replace: true },
+    // });
+
+    router.push(`/sticker-attach/${bookUuidResult.bookUuId}`);
   };
 
   return isLoading ? (
@@ -71,4 +85,4 @@ function StickerPack() {
   );
 }
 
-export default StickerPack;
+export default StickerPackLayout;

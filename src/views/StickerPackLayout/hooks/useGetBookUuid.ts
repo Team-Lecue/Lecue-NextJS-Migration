@@ -1,20 +1,20 @@
-import { useQuery } from 'react-query';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from "next/navigation";
+import { useQuery } from "react-query";
 
-import { getBookUuid } from '../api/getBookUuid';
+import { getBookUuid } from "../api/getBookUuid";
 
 export default function useGetBookUuid(bookId: number) {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const { data: bookUuId, isLoading } = useQuery(
-    ['useGetBookUuid'],
+    ["useGetBookUuid"],
     () => getBookUuid(bookId),
     {
       onError: () => {
-        navigate('/error');
+        router.push("/error");
       },
       refetchOnWindowFocus: false,
-    },
+    }
   );
 
   return { bookUuId, isLoading };
