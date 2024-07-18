@@ -45,6 +45,8 @@ export default function RootLayout({
             <GlobalStyleProvider>{children}</GlobalStyleProvider>
           </ThemeProvider>
         </QueryClientProvider>
+        <div id="lecuenote-modal"></div>
+        <div id="historyselect-modal"></div>
       </body>
     </html>
   );

@@ -1,5 +1,6 @@
-import CommonModalForm from './CommonModalForm';
-import ModalPortal from './ModalPortal';
+import dynamic from "next/dynamic";
+import CommonModalForm from "./CommonModalForm";
+const ModalPortal = dynamic(() => import("./ModalPortal"), { ssr: false });
 
 interface CommonModal {
   setModalOn: React.Dispatch<React.SetStateAction<boolean>>;

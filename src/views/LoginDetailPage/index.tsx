@@ -7,7 +7,7 @@ import DetailPageLayout from "../DetailPageLayout/page/DetailPageLayout";
 
 function LoginDetailPage() {
   const { bookUuid } = useParams();
-  const { bookDetail, isLoading } = useGetBookDetailLogin(bookUuid);
+  const { bookDetail, isLoading } = useGetBookDetailLogin(bookUuid as string);
 
   return <DetailPageLayout bookDetail={bookDetail} isLoading={isLoading} />;
 }

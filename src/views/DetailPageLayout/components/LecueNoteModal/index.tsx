@@ -1,12 +1,15 @@
+"use client";
+
 import { createPortal } from "react-dom";
 
 import { NoteType } from "../../type/lecueBookType";
 import * as S from "./LecueNoteModal.style";
+
+import IcX from "../../../../assets/icon/ic_x.svg";
+
 const modalContainer = document.getElementById(
   "lecuenote-modal"
 ) as HTMLElement;
-
-import IcX from "../../../../assets/icon/ic_x.svg";
 
 interface LecueNoteModalProps {
   selectedNote: NoteType;
@@ -17,6 +20,7 @@ function LecueNoteModal({ selectedNote, closeModal }: LecueNoteModalProps) {
   const handleCloseButtonClick = () => {
     closeModal();
   };
+
   return createPortal(
     <S.BlurryContainer>
       <S.LecueNoteModalWrapper

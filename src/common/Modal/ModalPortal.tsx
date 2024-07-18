@@ -1,11 +1,13 @@
-import ReactDOM from 'react-dom';
+"use client";
+
+import ReactDOM from "react-dom";
 
 interface ModalPortalProps {
   children: React.ReactNode;
 }
 
 const ModalPortal = ({ children }: ModalPortalProps) => {
-  const el: HTMLElement | null = document.getElementById('lecuenote-modal');
+  const el: HTMLElement | null = document.getElementById("lecuenote-modal");
   return ReactDOM.createPortal(children, el as Element | DocumentFragment);
 };
 

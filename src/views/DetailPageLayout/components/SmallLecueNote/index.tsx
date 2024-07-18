@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import { NoteType } from "../../type/lecueBookType";
 
+// import LecueNoteModal from "../LecueNoteModal";
 import dynamic from "next/dynamic";
 import * as S from "./SmallLecueNote.style";
 
