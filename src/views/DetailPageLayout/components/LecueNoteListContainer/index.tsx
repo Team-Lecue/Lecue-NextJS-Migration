@@ -1,7 +1,7 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { lazy, Suspense, useEffect, useRef, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense, lazy, useEffect, useRef, useState } from "react";
 
 import useScrollPosition from "../../../../utils/savedScrollPosition";
 
@@ -57,17 +57,22 @@ function LecueNoteListContainer(props: LecueNoteListContainerProps) {
     useStickerState(savedScrollPosition);
 
   const [isLogin, setIsLogin] = useState<string | null>();
-  const [stickerId, setStickerId] = useState<number | null>();
-  const [stickerImage, setStickerImage] = useState<string | null>();
+  // const [stickerId, setStickerId] = useState<number | null>();
+  // const [stickerImage, setStickerImage] = useState<string | null>();
+
+  const searchParams = useSearchParams();
+
+  const stickerId = searchParams.get("stickerId");
+  const stickerImage = searchParams.get("stickerImage");
 
   // 스토리지 쓸지 쿼리파라미터 쓸지 고민 중
   useEffect(() => {
     const storeIsLogin = sessionStorage.getItem("token");
     setIsLogin(storeIsLogin);
-    const storeStickerId = Number(sessionStorage.getItem("stickerId"));
-    setStickerId(storeStickerId);
-    const storeStickerImage = sessionStorage.getItem("stickerImage");
-    setStickerImage(storeStickerImage);
+    // const storeStickerId = Number(sessionStorage.getItem("stickerId"));
+    // setStickerId(storeStickerId);
+    // const storeStickerImage = sessionStorage.getItem("stickerImage");
+    // setStickerImage(storeStickerImage);
 
     // useNavigate state -> 세션 스토리지로 변경
     sessionStorage.setItem("bookId", bookId.toString());
@@ -97,8 +102,8 @@ function LecueNoteListContainer(props: LecueNoteListContainerProps) {
 
       setStickerState((prev) => ({
         ...prev,
-        postedStickerId: stickerId,
-        stickerImage: stickerImage,
+        postedStickerId: Number(stickerId),
+        stickerImage: stickerImage as string,
       }));
       setEditableStateTrue();
     }

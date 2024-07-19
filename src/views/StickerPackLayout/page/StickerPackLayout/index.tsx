@@ -14,7 +14,6 @@ import useGetStickerPack from "../../hooks/useGetStickerPack";
 import Button from "@/common/Button";
 import Header from "@/common/Header";
 import LoadingPage from "@/views/LoadingPage";
-import { useEffect } from "react";
 
 import StickerList from "../../components/StickerList";
 import { stickerType } from "../../type/stickerPackType";
@@ -40,13 +39,15 @@ function StickerPackLayout({ bookId }: StickerPackLayoutProps) {
     }));
   };
 
-  useEffect(() => {
-    sessionStorage.setItem(
-      "stickerId",
-      selectedStickerData.stickerId.toString()
-    );
-    sessionStorage.setItem("stickerImage", selectedStickerData.stickerImage);
-  }, [selectedStickerData]);
+  // 스토리지 이용 -> 쿼리파라미터 이용으로 변경
+  // 스티커 부착한 뒤에도 스토리지가 비어있지 않아 sticker-attach 뷰로 남아있는 오류 방지하기 위해 쿼리파라미터로 스티커 부착 여부 감시
+  // useEffect(() => {
+  //   sessionStorage.setItem(
+  //     "stickerId",
+  //     selectedStickerData.stickerId.toString()
+  //   );
+  //   sessionStorage.setItem("stickerImage", selectedStickerData.stickerImage);
+  // }, [selectedStickerData]);
 
   // Conditionally Hook Call 방지
   const bookUuidResult = useGetBookUuid(bookId);
@@ -61,7 +62,9 @@ function StickerPackLayout({ bookId }: StickerPackLayoutProps) {
     //   state: { sticker: selectedStickerData, replace: true },
     // });
 
-    router.push(`/sticker-attach/${bookUuidResult.bookUuId}`);
+    router.push(
+      `/sticker-attach/${bookUuidResult.bookUuId}?stickerId=${selectedStickerData.stickerId}&stickerImage=${selectedStickerData.stickerImage}`
+    );
   };
 
   return isLoading ? (
