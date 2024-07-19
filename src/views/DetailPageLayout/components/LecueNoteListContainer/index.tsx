@@ -104,7 +104,6 @@ function LecueNoteListContainer(props: LecueNoteListContainerProps) {
     }
   }, [stickerId, stickerImage, isEditable]);
 
-  // 여기서 null로 넘어감
   const handleClickDone = usePostSticker({
     bookUuid,
     heightFromBottom,
