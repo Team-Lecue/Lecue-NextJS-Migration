@@ -4,7 +4,7 @@ import { useMutation } from "react-query";
 import { postStickerState } from "../api/postStickerState";
 import { postedStickerParams } from "../type/postStickerType";
 
-const usePostStickerState = (bookUuId: string) => {
+const usePostStickerState = (bookUuid: string) => {
   const router = useRouter();
   const mutation = useMutation({
     mutationFn: ({
@@ -24,7 +24,7 @@ const usePostStickerState = (bookUuId: string) => {
       // replace true 해주는 useRouter 옵션 알아봐야 함
       // navigate(`/lecue-book/${bookUuId}`, { replace: true });
 
-      router.push(`/lecue-book/${bookUuId}`);
+      router.push(`/lecue-book/${bookUuid}`);
     },
 
     onError: () => router.push("/error"),

@@ -1,3 +1,5 @@
+"use client";
+
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -8,12 +10,14 @@ import useGetStickerPack from "../../hooks/useGetStickerPack";
 // type
 
 // style
-import Button from "@/common/Button/index.jsx";
-import Header from "@/common/Header/index.jsx";
-import LoadingPage from "@/views/LoadingPage/index.jsx";
+
+import Button from "@/common/Button";
+import Header from "@/common/Header";
+import LoadingPage from "@/views/LoadingPage";
 import { useEffect } from "react";
-import StickerList from "../../components/StickerList/index.jsx";
-import { stickerType } from "../../type/stickerPackType.js";
+
+import StickerList from "../../components/StickerList";
+import { stickerType } from "../../type/stickerPackType";
 import * as S from "./StickerPackLayout.style";
 
 interface StickerPackLayoutProps {

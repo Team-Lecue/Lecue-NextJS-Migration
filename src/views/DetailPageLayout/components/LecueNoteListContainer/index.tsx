@@ -31,7 +31,7 @@ interface LecueNoteListContainerProps {
   noteList: NoteType[];
   postedStickerList: postedStickerType[];
   isEditable: boolean;
-  setEditableStateFalse: () => void;
+  setEditableStateTrue: () => void;
   bookUuid: string;
   bookId: number;
 }
@@ -43,7 +43,7 @@ function LecueNoteListContainer(props: LecueNoteListContainerProps) {
     noteList,
     postedStickerList,
     isEditable,
-    setEditableStateFalse,
+    setEditableStateTrue,
     bookUuid,
     bookId,
   } = props;
@@ -100,11 +100,11 @@ function LecueNoteListContainer(props: LecueNoteListContainerProps) {
         postedStickerId: stickerId,
         stickerImage: stickerImage,
       }));
-    } else {
-      setEditableStateFalse();
+      setEditableStateTrue();
     }
   }, [stickerId, stickerImage, isEditable]);
 
+  // 여기서 null로 넘어감
   const handleClickDone = usePostSticker({
     bookUuid,
     heightFromBottom,

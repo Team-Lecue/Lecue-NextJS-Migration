@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import Header from "@/common/Header";
 import LoadingPage from "@/views/LoadingPage";
-import { useSearchParams } from "next/navigation";
+import { useParams } from "next/navigation";
 import usePostStickerState from "../../../StickerAttach/hooks/usePostStickerState";
 import BookInfoBox from "../../components/BookInfoBox";
 import LecueNoteListContainer from "../../components/LecueNoteListContainer";
@@ -10,15 +10,14 @@ import SlideBanner from "../../components/SlideBanner";
 import * as S from "./DetailPageLayout.style";
 
 function DetailPageLayout({ bookDetail, isLoading }: any) {
-  const [isEditable, setIsEditable] = useState(true);
+  const [isEditable, setIsEditable] = useState(false);
 
-  const searchParams = useSearchParams();
-  const bookUuid = searchParams.get("bookUuid") as string;
+  const { bookUuid } = useParams();
 
-  const postMutation = usePostStickerState(bookUuid);
+  const postMutation = usePostStickerState(bookUuid as string);
 
-  const setEditableStateFalse = () => {
-    setIsEditable(false);
+  const setEditableStateTrue = () => {
+    setIsEditable(true);
   };
 
   return isLoading || postMutation.isLoading ? (
@@ -32,9 +31,9 @@ function DetailPageLayout({ bookDetail, isLoading }: any) {
           <BookInfoBox {...bookDetail} bookUuid={bookUuid} />
           <LecueNoteListContainer
             bookId={bookDetail.bookId}
-            bookUuid={bookUuid}
+            bookUuid={bookUuid as string}
             isEditable={isEditable}
-            setEditableStateFalse={setEditableStateFalse}
+            setEditableStateTrue={setEditableStateTrue}
             noteNum={bookDetail.noteNum}
             backgroundColor={bookDetail.bookBackgroundColor}
             noteList={bookDetail.noteList}

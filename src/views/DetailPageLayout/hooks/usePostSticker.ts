@@ -1,5 +1,5 @@
-import usePostStickerState from '../../StickerAttach/hooks/usePostStickerState';
-import { postedStickerType } from '../type/lecueBookType';
+import usePostStickerState from "../../StickerAttach/hooks/usePostStickerState";
+import { postedStickerType } from "../type/lecueBookType";
 
 interface usePostStickerProps {
   bookUuid: string;
