@@ -50,7 +50,7 @@ function BookInfoBox({
   return (
     <S.BookInfoBoxWrapper backgroundColor={bookBackgroundColor}>
       <S.ProfileImageWrapper>
-        <S.ProfileImg src={favoriteImage} />
+        <S.ProfileImg src={favoriteImage} alt="프로필 이미지" />
       </S.ProfileImageWrapper>
       <S.BookInfoWrapper>
         <S.BookInfoHeader>

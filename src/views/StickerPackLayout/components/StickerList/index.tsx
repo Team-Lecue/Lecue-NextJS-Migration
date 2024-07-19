@@ -1,8 +1,10 @@
-import { Fragment } from 'react';
+"use client";
 
-import useGetStickerPack from '../../hooks/useGetStickerPack';
-import { stickerPackType, stickerType } from '../../type/stickerPackType';
-import * as S from './StickerList.style';
+import { Fragment } from "react";
+
+import useGetStickerPack from "../../hooks/useGetStickerPack";
+import { stickerPackType, stickerType } from "../../type/stickerPackType";
+import * as S from "./StickerList.style";
 
 interface StickerListProps {
   selectedStickerData: stickerType;

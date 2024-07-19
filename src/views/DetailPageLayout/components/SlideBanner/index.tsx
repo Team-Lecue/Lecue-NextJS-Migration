@@ -1,7 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
+"use client";
 
-import SlideBannerItem from '../SlideBannerItem';
-import * as S from './SlideBanner.style';
+import { useEffect, useRef, useState } from "react";
+
+import SlideBannerItem from "../SlideBannerItem";
+import * as S from "./SlideBanner.style";
 
 interface SlideBannerProps {
   name: string;

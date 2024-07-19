@@ -1,8 +1,10 @@
-import { useEffect } from 'react';
+"use client";
 
-import { NoteType } from '../../type/lecueBookType';
-import BigLecueNote from '../BigLecueNote';
-import * as S from './LinearView.style';
+import { useEffect } from "react";
+
+import { NoteType } from "../../type/lecueBookType";
+import BigLecueNote from "../BigLecueNote";
+import * as S from "./LinearView.style";
 
 interface LinearViewProps {
   noteList: NoteType[];

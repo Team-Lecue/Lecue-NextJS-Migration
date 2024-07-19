@@ -7,7 +7,6 @@ import UnLoginDetailPage from "../UnLoginDetailPage";
 function Detail() {
   const [isLogin, setIsLogin] = useState<string | null>();
 
-  console.log("리렌더");
   useEffect(() => {
     const storeIsLogin = sessionStorage.getItem("token");
     setIsLogin(storeIsLogin);

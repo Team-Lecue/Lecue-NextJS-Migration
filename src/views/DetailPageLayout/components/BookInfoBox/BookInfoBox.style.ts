@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 
 export const BookInfoBoxWrapper = styled.div<{ backgroundColor: string }>`
   display: flex;
@@ -9,9 +9,9 @@ export const BookInfoBoxWrapper = styled.div<{ backgroundColor: string }>`
   background-color: ${({ theme, backgroundColor }) => {
     backgroundColor;
     switch (backgroundColor) {
-      case '#F5F5F5':
+      case "#F5F5F5":
         return theme.colors.BG;
-      case '#191919':
+      case "#191919":
         return theme.colors.background;
     }
   }};
@@ -56,9 +56,9 @@ export const BookInfoHeaderItem = styled.p<{ backgroundColor: string }>`
   color: ${({ theme, backgroundColor }) => {
     backgroundColor;
     switch (backgroundColor) {
-      case '#F5F5F5':
+      case "#F5F5F5":
         return theme.colors.white30;
-      case '#191919':
+      case "#191919":
         return theme.colors.MG;
     }
   }};
@@ -82,9 +82,9 @@ export const BookInfoTitleText = styled.p<{ backgroundColor: string }>`
   color: ${({ theme, backgroundColor }) => {
     backgroundColor;
     switch (backgroundColor) {
-      case '#F5F5F5':
+      case "#F5F5F5":
         return theme.colors.background;
-      case '#191919':
+      case "#191919":
         return theme.colors.BG;
     }
   }};
@@ -102,9 +102,9 @@ export const BookInfoContent = styled.p<{ backgroundColor: string }>`
   color: ${({ theme, backgroundColor }) => {
     backgroundColor;
     switch (backgroundColor) {
-      case '#F5F5F5':
+      case "#F5F5F5":
         return theme.colors.white80;
-      case '#191919':
+      case "#191919":
         return theme.colors.BG;
     }
   }};

@@ -1,9 +1,11 @@
-import { forwardRef, Fragment, useRef } from 'react';
-import Draggable, { DraggableData, DraggableEvent } from 'react-draggable';
+"use client";
 
-import { NoteType, postedStickerType } from '../../type/lecueBookType';
-import SmallLecueNote from '../SmallLecueNote';
-import * as S from './ZigZagView.style';
+import { forwardRef, Fragment, useRef } from "react";
+import Draggable, { DraggableData, DraggableEvent } from "react-draggable";
+
+import { NoteType, postedStickerType } from "../../type/lecueBookType";
+import SmallLecueNote from "../SmallLecueNote";
+import * as S from "./ZigZagView.style";
 
 interface ZigZagViewProps {
   noteList: NoteType[];
@@ -25,7 +27,7 @@ const ZigZagView = forwardRef(function ZigZagView(
     savedScrollPosition,
     fullHeight,
   }: ZigZagViewProps,
-  ref: React.Ref<HTMLDivElement>,
+  ref: React.Ref<HTMLDivElement>
 ) {
   const nodeRef = useRef(null);
 
@@ -56,7 +58,7 @@ const ZigZagView = forwardRef(function ZigZagView(
                 >
                   <S.Sticker ref={nodeRef} stickerImage={data.stickerImage} />
                 </Draggable>
-              ),
+              )
           )}
         </Fragment>
       )}
