@@ -22,6 +22,7 @@ function TargetPage() {
     url: "",
     fileName: "",
   });
+  const [hasStoredImage, setHasStoredImage] = useState(false);
 
   const router = useRouter();
 
@@ -38,6 +39,7 @@ function TargetPage() {
         setName(a);
       }
     }
+    setHasStoredImage(sessionStorage.getItem("image") !== null);
   }, []);
 
   useEffect(() => {
@@ -105,10 +107,7 @@ function TargetPage() {
         <NameInputSection name={name} changeName={changeName} />
         <FavoriteImageInputSection changeFileData={changeFileData} />
         <CompleteButton
-          isActive={
-            (fileData !== null || sessionStorage.getItem("image") !== null) &&
-            name.length !== 0
-          }
+          isActive={(fileData !== null || hasStoredImage) && name.length !== 0}
           onClick={handleClickCompleteButton}
         />
       </S.TargetPageBodyWrapper>
