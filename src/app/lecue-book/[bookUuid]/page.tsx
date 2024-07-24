@@ -1,8 +1,4 @@
-import dynamic from "next/dynamic";
-
-const Detail = dynamic(() => import("@/views/Detail"), {
-  ssr: false,
-});
+import Detail from "@/views/Detail";
 
 function page() {
   return <Detail />;
