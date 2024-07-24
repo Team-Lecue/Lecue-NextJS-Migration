@@ -5,15 +5,20 @@ import { useCallback, useEffect, useState } from "react";
 
 import Header from "@/common/Header";
 import CommonModal from "@/common/Modal/CommonModal";
-import LoadingPage from "@/views/LoadingPage";
 import CompleteButton from "../../components/CompleteButton";
 import FavoriteImageInputSection from "../../components/FavoriteImageInputSection";
 import NameInputSection from "../../components/NameInputSection";
-import useGetPresignedUrl from "../../hooks/useGetPresignedUrl";
 import usePutPresignedUrl from "../../hooks/usePutPresignedUrl";
 import * as S from "./TargetPage.style";
 
-function TargetPage() {
+interface TargetPageProps {
+  presignedURLData: {
+    url: string;
+    fileName: string;
+  };
+}
+
+function TargetPage({ presignedURLData }: TargetPageProps) {
   const [presignedFileName, setPresignedFileName] = useState("");
   const [name, setName] = useState("");
   const [fileData, setFileData] = useState<File | null>(null);
@@ -26,7 +31,6 @@ function TargetPage() {
 
   const router = useRouter();
 
-  const { data, isLoading } = useGetPresignedUrl();
   const putMutation = usePutPresignedUrl();
 
   useEffect(() => {
@@ -43,12 +47,12 @@ function TargetPage() {
   }, []);
 
   useEffect(() => {
-    if (data) {
-      const { url, fileName } = data;
+    if (presignedURLData) {
+      const { url, fileName } = presignedURLData;
       setPresignedData({ url, fileName });
       setPresignedFileName(fileName);
     }
-  }, [data]);
+  }, [presignedURLData]);
 
   //useNavigate state 대신 세션스토리지 사용
 
@@ -91,9 +95,7 @@ function TargetPage() {
 
   const changeName = useCallback((name: string) => setName(name), []);
 
-  return isLoading ? (
-    <LoadingPage />
-  ) : (
+  return (
     <S.TargetPageWrapper>
       {escapeModal && (
         <CommonModal
