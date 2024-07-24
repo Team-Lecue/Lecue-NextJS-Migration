@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { Suspense, lazy, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import useScrollPosition from "../../../../utils/savedScrollPosition";
 
@@ -15,15 +15,20 @@ import usePostSticker from "../../hooks/usePostSticker";
 import useStickerState from "../../hooks/useStickerState";
 import { NoteType, postedStickerType } from "../../type/lecueBookType";
 //views
+import dynamic from "next/dynamic";
 import AlertBanner from "../AlretBanner";
 import EmptyView from "../EmptyView";
 import LecueNoteListHeader from "../LecueNoteLIstHeader";
 import ZigZagView from "../ZigZagView";
-//style
-import CommonModal from "@/common/Modal/CommonModal";
 import * as S from "./LecueNoteListContainer.style";
+//style
+const CommonModal = dynamic(() => import("@/common/Modal/CommonModal"), {
+  ssr: false,
+});
 
-const LinearView = lazy(() => import("../LinearView"));
+const LinearView = dynamic(() => import("../LinearView"), {
+  ssr: false,
+});
 
 interface LecueNoteListContainerProps {
   noteNum: number;
@@ -186,9 +191,7 @@ function LecueNoteListContainer(props: LecueNoteListContainerProps) {
             ref={scrollRef}
           />
         ) : (
-          <Suspense fallback={<div>Loading LinearView...</div>}>
-            <LinearView noteList={noteList} />
-          </Suspense>
+          <LinearView noteList={noteList} />
         )}
         {!isEditable ? (
           <>

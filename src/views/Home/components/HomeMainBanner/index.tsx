@@ -2,13 +2,16 @@
 
 import { useState } from "react";
 
+import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import IcProfile from "../../../../assets/icon/ic_profile.svg";
 import ImgLogoLecue from "../../../../assets/img/img_logo_lecue.svg";
-import CommonModal from "../../../../common/Modal/CommonModal";
 import HomeSwiper from "../HomeSwiper";
 import * as S from "./HomeMainBanner.style";
+const CommonModal = dynamic(() => import("@/common/Modal/CommonModal"), {
+  ssr: false,
+});
 
 function NavigateLecueBook() {
   const router = useRouter();

@@ -1,7 +1,7 @@
-import SelectView from "@/views/SelectView";
+import LandingView from "@/views/LandingView";
 
 function page() {
-  return <SelectView />;
+  return <LandingView />;
 }
 
 export default page;

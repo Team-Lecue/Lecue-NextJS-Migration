@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import LoginDetailPage from "../LoginDetailPage";
 import UnLoginDetailPage from "../UnLoginDetailPage";
 
@@ -11,7 +11,11 @@ function Detail() {
     const storeIsLogin = sessionStorage.getItem("token");
     setIsLogin(storeIsLogin);
   }, []);
-  return isLogin ? <LoginDetailPage /> : <UnLoginDetailPage />;
+  return (
+    <Suspense fallback={<div>Loading page...</div>}>
+      {isLogin ? <LoginDetailPage /> : <UnLoginDetailPage />}
+    </Suspense>
+  );
 }
 
 export default Detail;

@@ -4,8 +4,8 @@ import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 
 import Header from "@/common/Header";
-import CommonModal from "@/common/Modal/CommonModal";
 import LoadingPage from "@/views/LoadingPage";
+import dynamic from "next/dynamic";
 import { useEffect } from "react";
 import BookInfoSection from "../components/BookInfoSection";
 import BookInputSection from "../components/BookInputSection";
@@ -13,6 +13,9 @@ import CompleteButton from "../components/CompleteButton";
 import SelectColor from "../components/SelectColor";
 import usePostBook from "../hooks/usePostBook";
 import * as S from "./CreateBook.style";
+const CommonModal = dynamic(() => import("@/common/Modal/CommonModal"), {
+  ssr: false,
+});
 
 function CreateBook() {
   const [title, setTitle] = useState("");

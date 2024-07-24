@@ -4,12 +4,15 @@ import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 
 import Header from "@/common/Header";
-import CommonModal from "@/common/Modal/CommonModal";
+import dynamic from "next/dynamic";
 import CompleteButton from "../../components/CompleteButton";
 import FavoriteImageInputSection from "../../components/FavoriteImageInputSection";
 import NameInputSection from "../../components/NameInputSection";
 import usePutPresignedUrl from "../../hooks/usePutPresignedUrl";
 import * as S from "./TargetPage.style";
+const CommonModal = dynamic(() => import("@/common/Modal/CommonModal"), {
+  ssr: false,
+});
 
 interface TargetPageProps {
   presignedURLData: {

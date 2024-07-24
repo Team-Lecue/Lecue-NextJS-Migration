@@ -7,7 +7,9 @@ import { NoteType } from "../../type/lecueBookType";
 import dynamic from "next/dynamic";
 import * as S from "./SmallLecueNote.style";
 
-const LecueNoteModal = dynamic(() => import("../LecueNoteModal"));
+const LecueNoteModal = dynamic(() => import("../LecueNoteModal"), {
+  ssr: false,
+});
 
 interface SmallLecueNoteProps {
   renderType: number;

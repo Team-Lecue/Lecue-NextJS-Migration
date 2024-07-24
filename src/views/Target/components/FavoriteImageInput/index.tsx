@@ -1,6 +1,5 @@
 "use client";
 
-import imageCompression from "browser-image-compression";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
@@ -44,6 +43,10 @@ function FavoriteImageInput({ changeFileData }: FavoriteImageInputProps) {
 
       try {
         const base64Result = await convertBlobToBase64(file);
+
+        const { default: imageCompression } = await import(
+          "browser-image-compression"
+        );
 
         const compressedFile = await imageCompression(file, options);
 
