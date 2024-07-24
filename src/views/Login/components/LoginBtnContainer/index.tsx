@@ -1,3 +1,5 @@
+"use client";
+
 import { KAKAO_AUTH_URL } from "../../api/oAuth";
 import * as S from "./LoginBtnContainer.style";
 

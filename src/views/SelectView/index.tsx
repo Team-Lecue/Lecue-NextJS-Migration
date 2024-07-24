@@ -3,10 +3,8 @@
 import dynamic from "next/dynamic";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-const Home = dynamic(() => import("../Home/page"), { ssr: false });
-const SplashPage = dynamic(() => import("../Splash/page/SplashPage"), {
-  ssr: false,
-});
+const Home = dynamic(() => import("../Home/page"));
+const SplashPage = dynamic(() => import("../Splash/page/SplashPage"));
 
 function SelectView() {
   const searchParams = useSearchParams();

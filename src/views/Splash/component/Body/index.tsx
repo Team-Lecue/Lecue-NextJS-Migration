@@ -1,9 +1,11 @@
 "use client";
 
-import Lottie from "lottie-react";
+import dynamic from "next/dynamic";
 import lottieImg from "../../../../assets/lottie/lottie.json";
 import useGetNoteNum from "../../hook/useGetNoteNum";
 import * as S from "./Body.style";
+
+const Lottie = dynamic(() => import("lottie-react"));
 
 function Body() {
   const { data } = useGetNoteNum();

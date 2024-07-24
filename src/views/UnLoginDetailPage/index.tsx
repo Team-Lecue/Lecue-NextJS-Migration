@@ -1,3 +1,5 @@
+"use client";
+
 import { useParams } from "next/navigation";
 import useGetBookDetail from "../DetailPageLayout/hooks/useGetBookDetail";
 import DetailPageLayout from "../DetailPageLayout/page/DetailPageLayout";

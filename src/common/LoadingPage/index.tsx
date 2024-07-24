@@ -1,7 +1,8 @@
-import Lottie from "lottie-react";
-
+import dynamic from "next/dynamic";
 import animationData from "../../assets/lottie/spiner 120.json";
 import * as S from "./LoadingPage.style";
+
+const Lottie = dynamic(() => import("lottie-react"));
 
 function LoadingPage() {
   return (
